@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { authService } from "../firebaseSetup";
-
+import './signup.scss';
 
 function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
+
     const handleOnChange = (e) => {
         const type = e.target.name;
         if (type === "email") {
@@ -22,12 +22,12 @@ function SignUp() {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
-        if (email !== "" && password !== "" && name!=="") {
+        if (email !== "" && password !== "" && name !== "") {
             try {
                 await createUserWithEmailAndPassword(authService, email, password);
                 //signUp(email, password);
                 console.log(name);
-                const profileObj = {displayName: name};
+                const profileObj = { displayName: name };
                 await updateProfile(authService.currentUser, profileObj);
             } catch (error) {
                 console.log(error);
@@ -38,42 +38,43 @@ function SignUp() {
     return (
         <div className="sign-container">
             <div className="sign-up-wrap">
-                <h1 className="title">회원가입</h1>
+                <h1 className="title">Register</h1>
                 <form className="sign-up-form" onSubmit={handleOnSubmit}>
-                    <div>
-                        <input
+                    <div className='input'>
+                        <input className='n1'
                             type="name"
                             placeholder="이름을 입력하세요."
                             name="name"
                             value={name}
                             onChange={handleOnChange}
                         />
-                    </div>
-                    <div>
-                        <input
-                            type="email"
-                            placeholder="이메일을 입력하세요."
-                            name="email"
-                            value={email}
-                            onChange={handleOnChange}
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="password"
-                            placeholder="비밀번호를 입력하세요."
-                            name="password"
-                            value={password}
-                            onChange={handleOnChange}
-                        />
-                    </div>
-                    <div>
-                        <button type="submit">회원가입</button>
+                        <div>
+                            <input className='n1'
+                                type="email"
+                                placeholder="이메일을 입력하세요."
+                                name="email"
+                                value={email}
+                                onChange={handleOnChange}
+                            />
+                            <div>
+                                <input className='n1'
+                                    type="password"
+                                    placeholder="비밀번호를 입력하세요."
+                                    name="password"
+                                    value={password}
+                                    onChange={handleOnChange}
+                                />
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <button className='b2' type="submit">
+                            <div className='text'>register</div></button>
                     </div>
                 </form>
                 <hr></hr>
                 <p>
-                    이미 회원임 
+                    이미 회원임
                 </p>
             </div>
         </div>
