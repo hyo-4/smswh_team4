@@ -6,23 +6,25 @@ import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import './Profile.scss';
 
 
-const Profile = ({userObj}) => {
+const Profile = ({ userObj }) => {
 
     return (
         <div>
             <div className="Profile">
-                <h2>Profile</h2>
+                <h2>   Profile  </h2></div>
+            <div className="Profileimage">
                 <img src={require("./pic1.png").default} /></div>
             <div className="Name">
                 <h1>{userObj.displayName}</h1>
                 <h1>{userObj.email}</h1>
             </div>
-            <button type="submit">태그1</button>
-            <button type="submit">태그2</button>
-            <button type="submit">태그3</button>
-            <button type="submit">태그4</button>
-            <button type="submit">태그5</button>
-            <button type="submit">태그6</button>
+            <button className="fb1" type="submit">
+                <div className="ftext"> tag1</div></button>
+            <button className="fb1" type="submit"><div className="ftext"> tag2</div></button>
+            <button className="fb1" type="submit"><div className="ftext"> tag3</div></button>
+            <button className="fb1" type="submit"><div className="ftext"> tag4</div></button>
+            <button className="fb1" type="submit"><div className="ftext"> tag5</div></button>
+            <button className="fb1" type="submit"><div className="ftext"> tag6</div></button>
 
 
 

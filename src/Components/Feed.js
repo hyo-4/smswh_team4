@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import { dbService } from "../firebaseSetup";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import Some from "./Some";
+import './Feed.scss';
 
-const Feed = ({userObj}) => {
+
+const Feed = ({ userObj }) => {
   const [feedText, setFeedText] = useState("");
   const [feedArray, setFeedArray] = useState([]);
-  const [tag,setTag] = useState("");
-  const [tags,setTags] = useState([]);
+  const [tag, setTag] = useState("");
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     const q = query(
@@ -19,7 +21,7 @@ const Feed = ({userObj}) => {
       const someArr = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      })); 
+      }));
       setFeedArray(someArr);
     });
   }, []);
@@ -33,20 +35,20 @@ const Feed = ({userObj}) => {
       tags: tags
     };
     console.log(feedObj);
-    await addDoc(collection(dbService,"SoMe"),feedObj);
+    await addDoc(collection(dbService, "SoMe"), feedObj);
     setFeedText("");
     setTags([]);
     //upload the text
   }
-  
+
   const onChange = (event) => {
     const {
-      target: {value},
+      target: { value },
     } = event;
-    if(event.target.name==="feed"){
+    if (event.target.name === "feed") {
       setFeedText(value);
     }
-    else if(event.target.name==="tag"){
+    else if (event.target.name === "tag") {
       setTag(value);
     }
   }
@@ -59,22 +61,24 @@ const Feed = ({userObj}) => {
 
   return (
     <div>
-      <form onSubmit = {onSubmit}>
-        <input type="text" name="feed" value={feedText} placeholder="Write your text here!" maxLength={120} onChange={onChange}/>
-        <input type="submit" value="Upload"/>
-        <input type="text" name="tag" value={tag} placeholder="tag" onChange={onChange}/>
-        <input type="button" value="add" onClick={addTag}/>
-        {tags.map( (hashtag,index) => (
+      <form className='submit' onSubmit={onSubmit}>
+        <div className="input1">
+          <input className="n1" type="text" name="feed" value={feedText} placeholder="Write your text here!" maxLength={120} onChange={onChange} />
+        </div>
+        <input className="n2" type="submit" value="Upload" ></input>
+        <input className="n3" type="text" name="tag" value={tag} placeholder="tag" onChange={onChange} />
+        <input className="n4" type="button" value="add" onClick={addTag} />
+        {tags.map((hashtag, index) => (
           <span key={index}> #{hashtag} </span>
         ))}
-        
+
       </form>
-      <div>
+      <div className="feed1">
         {feedArray.map(feed => (
-          
-          <Some 
+
+          <Some
             key={feed.id}
-            someObj={feed} 
+            someObj={feed}
             isOwner={feed.creatorID === userObj.uid}
           />
         ))}
@@ -84,7 +88,7 @@ const Feed = ({userObj}) => {
 };
 
 export default Feed;
-/** 
+/**
 <>
           <p key={feed.id}>{feed.text}</p>
           <ul>
