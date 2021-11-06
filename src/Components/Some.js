@@ -21,6 +21,7 @@ const Some = ({someObj, isOwner}) => {
     await updateDoc(SomeTextRef, {
       text:newSome
     });
+    setEditing(false);
   };
   const onChange = (event) => {
     const {target:{value}} = event;

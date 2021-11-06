@@ -1,48 +1,50 @@
-
-.title{
-    color: #2F80ED;
-    font-size: 50px;
-    margin-top: 20rem;
-    margin-left: 13rem;
-    padding: 5rem;
-    width: 1280px;
-    display: flex;
-    overflow: hidden
-
+.title {
+  color: #2f80ed;
+  font-size: 50px;
+  margin-top: 10rem;
+  margin-left: 14rem;
+  padding: 5rem;
+  width: 200px;
+  display: flex;
+  overflow: hidden;
 }
 
-.sign-form{
-    font-size:30px;
-    padding: 5rem;
+.sign-form {
+  font-size: 30px;
+  padding: 5rem;
+  float: left;
 }
 
-.n1{
-    font-size: 30px;
-    border-color: skyblue;
-    width: 600px;
-    line-height: 1;
-
+.n1 {
+  font-size: 30px;
+  border-color: skyblue;
+  width: 600px;
+  line-height: 1;
 }
 
-.text{
-    color: #2F80ED;
-    font-family: 'Fira Mono', monospace;
-    
+.text {
+  color: #2f80ed;
+  font-family: "Fira Mono", monospace;
 }
 
-.b1{
-    background-color: snow;
-    padding: 1rem;
-    font-size: 30px;
-    width: 300px;
-    border-color: #2F80ED;
-    margin-left: 10rem;
-    
+.b1 {
+  background-color: snow;
+  padding: 1rem;
+  font-size: 30px;
+  width: 300px;
+  border-color: #2f80ed;
+  margin-left: 10rem;
 }
 
-.img{
-    width: 100px;
-    margin-left: 100rem;
-   padding-left: 50rem;
-   background-color: pink;
+.img {
+  width: 100px;
+  margin-left: 10rem;
+  padding-left: 50rem;
+  background-color: pink;
+}
+
+.loginScreen {
+  background-color: aliceblue;
+  position: absolute;
+  width: 100%;
 }
