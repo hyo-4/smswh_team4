@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import Home from "../Home.js";
 import Feed from "../Feed.js";
 import Search from "../Search.js";
@@ -10,7 +10,7 @@ const AppRouter = () => {
     <HashRouter>
       <>
       <Navigation/>
-        <Switch>
+        <Routes>
           <Route exact path="/">
             <Home />
           </Route>
@@ -21,7 +21,7 @@ const AppRouter = () => {
             <Search />
           </Route>
           <Redirect from="*" to="/"/>
-        </Switch>
+        </Routes>
         
       </>
     </HashRouter>
