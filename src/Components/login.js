@@ -7,18 +7,15 @@ import mysome1 from './mysome1.PNG'
 
 
 const Login = () => {
-    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleOnChange = (e) => {
         const type = e.target.name;
-        if (type === "name") {
-            setName(e.target.value);
+        if (type === "email") {
+            setEmail(e.target.value);
         } else if (type === "password") {
             setPassword(e.target.value);
-        } else if (type === "email") {
-            setEmail(e.target.value);
         }
     };
 
@@ -36,56 +33,49 @@ const Login = () => {
     };
 
     return (
-        <div className="sign-container">
+        <div className="loginScreen">
+            <div className="sign-container">
 
-            <div className="sign-wrap">
-                <h1 className="title">Login</h1>
+                <div className="sign-wrap">
+                    <h1 className="title">Login</h1>
+                </div>
+
+                <form className="sign-form" onSubmit={handleOnSubmit}>
+                    
+                    <div>
+
+                        <input className='n1'
+                            type="email"
+                            placeholder="이메일을 입력하세요."
+                            name="email"
+                            value={email}
+                            onChange={handleOnChange}
+                        />
+                    </div>
+                    <div>
+                        <input className='n1'
+                            type="password"
+                            placeholder="비밀번호를 입력하세요."
+                            name="password"
+                            value={password}
+                            onChange={handleOnChange}
+                        />
+
+                    </div>
+                    <div>
+                        <button className='b1' type="submit">
+                            <div className='text'>login</div>
+
+                        </button>
+
+                    </div>
+                </form>
+
             </div>
-
-            <form className="sign-form" onSubmit={handleOnSubmit}>
-                <div>
-
-                    <input className='n1'
-                        type="name"
-                        placeholder="이름을 입력하세요."
-                        name="name"
-                        value={name}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <div>
-
-                    <input className='n1'
-                        type="email"
-                        placeholder="이메일을 입력하세요."
-                        name="email"
-                        value={email}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <div>
-                    <input className='n1'
-                        type="password"
-                        placeholder="비밀번호를 입력하세요."
-                        name="password"
-                        value={password}
-                        onChange={handleOnChange}
-                    />
-
-                </div>
-                <div>
-                    <button className='b1' type="submit">
-                        <div className='text'>login</div>
-
-                    </button>
-
-                </div>
-            </form>
-            <hr></hr>
-            <p className='mention'>
-                회원이 아니신가?
-
-            </p>
+            <div className="imgContainer">
+                <img src={mysome1}></img>
+            </div> 
+            <hr/>
         </div>
 
     );
