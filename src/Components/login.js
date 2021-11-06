@@ -53,6 +53,7 @@ const Login = () => {
                     />
                 </div>
                 <div>
+
                     <input className='n1'
                         type="email"
                         placeholder="이메일을 입력하세요."
@@ -74,6 +75,7 @@ const Login = () => {
                 <div>
                     <button className='b1' type="submit">
                         <div className='text'>login</div>
+
                     </button>
 
                 </div>
@@ -81,6 +83,7 @@ const Login = () => {
             <hr></hr>
             <p className='mention'>
                 회원이 아니신가?
+
             </p>
         </div>
 

@@ -81,4 +81,5 @@ function SignUp() {
     );
 }
 
-export default SignUp;//<Link to="/login">로그인</Link>
+export default SignUp;
+//<Link to="/login">로그인</Link>
