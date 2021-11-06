@@ -1,25 +1,31 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { authService } from "./firebaseSetup.js";
 
-
-function Login() {
+const Login = () => {
     const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    
     const handleOnChange = (e) => {
         const type = e.target.name;
         if (type === "name") {
             setName(e.target.value);
         } else if (type === "password") {
             setPassword(e.target.value);
+        } else if(type === "email") {
+            setEmail(e.target.value);
         }
     };
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
-        if (name !== "" && password !== "") {
+        if (email !== "" && password !== "") {
             try {
-                await signIn(name, password).then((res) => console.log(res));
+                await signInWithEmailAndPassword(authService,email,password); 
+                console.log("login Success");
+                //signIn(name, password).then((res) => console.log(res));
             } catch (error) {
                 console.log(error);
             }
@@ -42,6 +48,15 @@ function Login() {
                     </div>
                     <div>
                         <input
+                            type="email"
+                            placeholder="이메일을 입력하세요."
+                            name="email"
+                            value={email}
+                            onChange={handleOnChange}
+                        />
+                    </div>
+                    <div>
+                        <input
                             type="password"
                             placeholder="비밀번호를 입력하세요."
                             name="password"
@@ -55,7 +70,7 @@ function Login() {
                 </form>
                 <hr></hr>
                 <p>
-                    회원이 아니신가? <Link to="/signup">회원가입</Link>
+                    회원이 아니신가? 
                 </p>
             </div>
         </div>
@@ -63,3 +78,5 @@ function Login() {
 }
 
 export default Login;
+
+//<Link to="/signup">회원가입</Link>
