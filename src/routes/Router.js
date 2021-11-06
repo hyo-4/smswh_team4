@@ -1,8 +1,8 @@
 import React from "react";
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
-import Home from "../Home.js";
-import Feed from "../Feed.js";
-import Search from "../Search.js";
+import Home from "../Components/Home.js";
+import Feed from "../Components/Feed.js";
+import Search from "../Components/Search.js";
 import Navigation from "./Navigation.js";
 
 const AppRouter = () => {

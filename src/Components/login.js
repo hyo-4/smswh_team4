@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {createUserWithEmailAndPassword} from "firebase/auth";
-import { authService } from "./firebaseSetup";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { authService } from "../firebaseSetup.js";
 
-
-function SignUp() {
+const Login = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
     const handleOnChange = (e) => {
         const type = e.target.name;
-        if (type === "email") {
-            setEmail(e.target.value);
+        if (type === "name") {
+            setName(e.target.value);
         } else if (type === "password") {
             setPassword(e.target.value);
+        } else if(type === "email") {
+            setEmail(e.target.value);
         }
     };
 
@@ -22,8 +23,9 @@ function SignUp() {
         e.preventDefault();
         if (email !== "" && password !== "") {
             try {
-                await createUserWithEmailAndPassword(authService, email, password);
-                //signUp(email, password);
+                await signInWithEmailAndPassword(authService,email,password); 
+                console.log("login Success");
+                //signIn(name, password).then((res) => console.log(res));
             } catch (error) {
                 console.log(error);
             }
@@ -32,9 +34,9 @@ function SignUp() {
 
     return (
         <div className="sign-container">
-            <div className="sign-up-wrap">
-                <h1 className="title">회원가입</h1>
-                <form className="sign-up-form" onSubmit={handleOnSubmit}>
+            <div className="sign-wrap">
+                <h1 className="title">로그인</h1>
+                <form className="sign-form" onSubmit={handleOnSubmit}>
                     <div>
                         <input
                             type="name"
@@ -63,16 +65,18 @@ function SignUp() {
                         />
                     </div>
                     <div>
-                        <button type="submit">회원가입</button>
+                        <button type="submit">로그인</button>
                     </div>
                 </form>
                 <hr></hr>
                 <p>
-                    이미 회원임 
+                    회원이 아니신가? 
                 </p>
             </div>
         </div>
     );
 }
 
-export default SignUp;//<Link to="/login">로그인</Link>
+export default Login;
+
+//<Link to="/signup">회원가입</Link>
