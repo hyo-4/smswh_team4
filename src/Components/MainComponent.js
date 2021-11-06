@@ -14,7 +14,7 @@ const MainComponent = ({userObj, handleIsLogin}) => {
       {userObj.email}
       {userObj.displayName}
       <button onClick={onLogOutClick}>Log Out</button>
-      <Feed/>
+      <Feed userObj={userObj}/>
     </div>
   );
 };
