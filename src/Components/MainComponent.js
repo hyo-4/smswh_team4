@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Feed from "./Feed";
 import { authService } from "../firebaseSetup";
 import Profile from "./Profile";
-import Search from "./Search";
 import NavBar from "./navBar";
+import SearchFeed from "./FeedSearch";
 
 const MainComponent = ({userObj, handleIsLogin}) => {
   const [state,setState] = useState(0);
@@ -32,9 +32,9 @@ const MainComponent = ({userObj, handleIsLogin}) => {
       <div>
         <NavBar handleProfile={handleProfile} handleFeed={handleFeed} handleSearch={handleSearch}/>
         
-        {state===0? <Profile/>:
+        {state===0? <Profile userObj={userObj}/>:
         <>
-        {state===1?<Feed userObj={userObj}/>:<Search userObj={userObj}/>}
+        {state===1?<Feed userObj={userObj}/>:<SearchFeed userObj={userObj}/>}
         </>
         }  
 
