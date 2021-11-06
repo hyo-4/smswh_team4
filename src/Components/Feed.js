@@ -2,6 +2,7 @@ import { addDoc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { dbService } from "../firebaseSetup";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import Some from "./Some";
 
 const Feed = ({userObj}) => {
   const [feedText, setFeedText] = useState("");
@@ -70,12 +71,12 @@ const Feed = ({userObj}) => {
       </form>
       <div>
         {feedArray.map(feed => (
-          <>
-          <p key={feed.id}>{feed.text}</p>
-          <ul>
-            {feed.tags.map(tag => (<li>#{tag}</li>))}
-          </ul>
-          </>
+          
+          <Some 
+            key={feed.id}
+            someObj={feed} 
+            isOwner={feed.creatorID === userObj.uid}
+          />
         ))}
       </div>
     </div>
@@ -83,3 +84,10 @@ const Feed = ({userObj}) => {
 };
 
 export default Feed;
+/** 
+<>
+          <p key={feed.id}>{feed.text}</p>
+          <ul>
+            {feed.tags.map(tag => (<li>#{tag}</li>))}
+          </ul>
+          </>**/
