@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { authService } from "../firebaseSetup.js";
 import "./login.scss";
+import mysome1 from './mysome1.PNG'
 
 
 const Login = () => {
@@ -36,8 +37,10 @@ const Login = () => {
 
     return (
         <div className="sign-container">
+
             <div className="sign-wrap">
-                <h1 className="title">Login</h1></div>
+                <h1 className="title">Login</h1>
+            </div>
             <form className="sign-form" onSubmit={handleOnSubmit}>
                 <div>
 
@@ -72,6 +75,7 @@ const Login = () => {
                     <button className='b1' type="submit">
                         <div className='text'>login</div>
                     </button>
+
                 </div>
             </form>
             <hr></hr>
@@ -86,3 +90,5 @@ const Login = () => {
 export default Login;
 
 //<Link to="/signup">회원가입</Link>
+//<div className='img'>
+               // <img src={require("./mysome1.PNG").default} /></div>
