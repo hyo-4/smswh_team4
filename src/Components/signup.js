@@ -26,7 +26,7 @@ function SignUp() {
             try {
                 await createUserWithEmailAndPassword(authService, email, password);
                 //signUp(email, password);
-                console.log(name);
+                //console.log(name);
                 const profileObj = { displayName: name };
                 await updateProfile(authService.currentUser, profileObj);
             } catch (error) {
