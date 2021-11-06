@@ -1,31 +1,34 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { authService } from "./firebaseSetup.js";
+import {createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
+import { authService } from "../firebaseSetup";
 
-const Login = () => {
+
+function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
     const handleOnChange = (e) => {
         const type = e.target.name;
-        if (type === "name") {
-            setName(e.target.value);
+        if (type === "email") {
+            setEmail(e.target.value);
         } else if (type === "password") {
             setPassword(e.target.value);
-        } else if(type === "email") {
-            setEmail(e.target.value);
+        } else if (type === "name") {
+            setName(e.target.value);
         }
     };
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
-        if (email !== "" && password !== "") {
+        if (email !== "" && password !== "" && name!=="") {
             try {
-                await signInWithEmailAndPassword(authService,email,password); 
-                console.log("login Success");
-                //signIn(name, password).then((res) => console.log(res));
+                await createUserWithEmailAndPassword(authService, email, password);
+                //signUp(email, password);
+                console.log(name);
+                const profileObj = {displayName: name};
+                await updateProfile(authService.currentUser, profileObj);
             } catch (error) {
                 console.log(error);
             }
@@ -34,9 +37,9 @@ const Login = () => {
 
     return (
         <div className="sign-container">
-            <div className="sign-wrap">
-                <h1 className="title">로그인</h1>
-                <form className="sign-form" onSubmit={handleOnSubmit}>
+            <div className="sign-up-wrap">
+                <h1 className="title">회원가입</h1>
+                <form className="sign-up-form" onSubmit={handleOnSubmit}>
                     <div>
                         <input
                             type="name"
@@ -65,18 +68,16 @@ const Login = () => {
                         />
                     </div>
                     <div>
-                        <button type="submit">로그인</button>
+                        <button type="submit">회원가입</button>
                     </div>
                 </form>
                 <hr></hr>
                 <p>
-                    회원이 아니신가? 
+                    이미 회원임 
                 </p>
             </div>
         </div>
     );
 }
 
-export default Login;
-
-//<Link to="/signup">회원가입</Link>
+export default SignUp;//<Link to="/login">로그인</Link>

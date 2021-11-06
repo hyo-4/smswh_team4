@@ -1,6 +1,6 @@
 import { addDoc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
-import { dbService } from "./firebaseSetup";
+import { dbService } from "../firebaseSetup";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
 const Feed = () => {
