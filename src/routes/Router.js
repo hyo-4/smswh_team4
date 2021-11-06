@@ -20,7 +20,7 @@ const AppRouter = () => {
           <Route exact path="/search">
             <Search />
           </Route>
-          <Redirect from="*" to="/"/>
+          <Navigate from="*" to="/"/>
         </Routes>
         
       </>
