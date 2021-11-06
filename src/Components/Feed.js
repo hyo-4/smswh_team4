@@ -3,10 +3,12 @@ import React, { useState, useEffect } from "react";
 import { dbService } from "../firebaseSetup";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
-const Feed = () => {
+const Feed = ({userObj}) => {
   const [feedText, setFeedText] = useState("");
   const [feedArray, setFeedArray] = useState([]);
-  
+  const [tag,setTag] = useState("");
+  const [tags,setTags] = useState([]);
+
   useEffect(() => {
     const q = query(
       collection(dbService, "SoMe"),
@@ -25,11 +27,14 @@ const Feed = () => {
     event.preventDefault();
     const feedObj = {
       text: feedText,
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      creatorID: userObj.uid,
+      tags: tags
     };
     console.log(feedObj);
     await addDoc(collection(dbService,"SoMe"),feedObj);
     setFeedText("");
+    setTags([]);
     //upload the text
   }
   
@@ -37,18 +42,40 @@ const Feed = () => {
     const {
       target: {value},
     } = event;
-    setFeedText(value);
+    if(event.target.name==="feed"){
+      setFeedText(value);
+    }
+    else if(event.target.name==="tag"){
+      setTag(value);
+    }
+  }
+
+  const addTag = () => {
+    setTags([...tags, tag]);
+    console.log(tags);
+    setTag("");
   }
 
   return (
     <div>
       <form onSubmit = {onSubmit}>
-        <input type="text" value={feedText} placeholder="Write your text here!" maxLength={120} onChange={onChange}/>
+        <input type="text" name="feed" value={feedText} placeholder="Write your text here!" maxLength={120} onChange={onChange}/>
         <input type="submit" value="Upload"/>
+        <input type="text" name="tag" value={tag} placeholder="tag" onChange={onChange}/>
+        <input type="button" value="add" onClick={addTag}/>
+        {tags.map( (hashtag,index) => (
+          <span key={index}> #{hashtag} </span>
+        ))}
+        
       </form>
       <div>
         {feedArray.map(feed => (
+          <>
           <p key={feed.id}>{feed.text}</p>
+          <ul>
+            {feed.tags.map(tag => (<li>#{tag}</li>))}
+          </ul>
+          </>
         ))}
       </div>
     </div>
