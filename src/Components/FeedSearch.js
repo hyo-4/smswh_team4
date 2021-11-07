@@ -6,21 +6,35 @@ import Some from "./Some";
 import './FeedSearch.scss';
 
 
-const SearchFeed = ({ userObj }) => {
+const SearchFeed = ({ userObj, defaultTag }) => {
   const [searchTag, setSearchTag] = useState("");
   const [resultArr, setResultArr] = useState([]);
 
   useEffect(() => {
-    const q = query(
-      collection(dbService, "SoMe")
-    );
-    onSnapshot(q, (snapshot) => {
-      const someArr = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setResultArr(someArr);
-    });
+    if(defaultTag===""){
+      const q = query(
+        collection(dbService, "SoMe")
+      );
+      onSnapshot(q, (snapshot) => {
+        const someArr = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setResultArr(someArr);
+      });
+    } else {
+      const q = query(
+        collection(dbService, "SoMe"),
+        where("tags", "array-contains", defaultTag)
+      );
+      onSnapshot(q, (snapshot) => {
+        const someArr = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setResultArr(someArr);
+      });
+    }
   }, []);
 
   const onSubmit = async (event) => {

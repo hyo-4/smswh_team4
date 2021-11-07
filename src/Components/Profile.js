@@ -29,8 +29,12 @@ const Profile = ({ userObj, handleSearch }) => {
         //console.log(value);
     }, []);
 
-    const onClick = () => {
-        handleSearch();
+    const onClick = (event) => {
+        const {
+            target: value,
+        } = event;
+        console.log(value.innerText);
+        handleSearch(value.innerText);
         const menu = document.getElementsByClassName("menu");
 
         
