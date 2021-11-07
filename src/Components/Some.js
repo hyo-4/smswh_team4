@@ -45,9 +45,9 @@ const Some = ({someObj, isOwner}) => {
         </form>
         <button onClick={toggleEditing}>Cancel</button>
         </>
-      ): (
+      ):(
         <>
-          <h4>{someObj.text}</h4>
+          <h4>{someObj.creatorName}:{someObj.text}</h4>
           <ul>
             {someObj.tags.map((tag,index) => (<li key={index}>#{tag}</li>))}
           </ul>

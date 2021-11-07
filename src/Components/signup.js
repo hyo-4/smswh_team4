@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { authService } from "../firebaseSetup";
+import { authService, dbService } from "../firebaseSetup";
 import './signup.scss';
+import { addDoc, collection } from "firebase/firestore";
 
 function SignUp() {
     const [name, setName] = useState("");
@@ -29,6 +30,26 @@ function SignUp() {
                 //console.log(name);
                 const profileObj = { displayName: name };
                 await updateProfile(authService.currentUser, profileObj);
+                const accObj = {
+                    creatorID: authService.currentUser.uid,
+                    baseball : false,
+                    football : false,
+                    kpop : false,
+                    music : false,
+                    study : false,
+                    drawing : false,
+                    coding : false,
+                    reading : false,
+                    travel : false,
+                    webtoon : false,
+                    game : false,
+                    beuty : false,
+                    health : false,
+                    photo : false,
+                    love : false,
+                    fashion : false
+                }
+                await addDoc(collection(dbService,"accounts"),accObj);
             } catch (error) {
                 console.log(error);
             }
