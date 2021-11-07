@@ -30,8 +30,9 @@ const Home = ({ userObj }) => {
       setRefArr(tempArr);
       if(tempArr[0]!==undefined){
         valueCheck(tempArr);
+        setTags(tempArr[0].type);
       }
-      setTags(tempArr[0].type);
+      
     });
     checkTag();
     //console.log(refArr);
@@ -88,16 +89,19 @@ const Home = ({ userObj }) => {
     checkTag();
   };
 
-  const checkTag = () => {
+  const checkTag = async () => {
     const tag = [];
     for (let i = 0; i < 6; i++) {
       if (value[i] >= 2) {
         tag.push(list[i]);
       }
     }
-    //const textRef = doc(dbService, "accounts", `${refArr[0].id}`);
-    //await updateDoc(textRef, {type: tags});
     setTags(tag);
+    if(refArr[0]!==undefined){
+      const textRef = doc(dbService, "accounts", `${refArr[0].id}`);
+      await updateDoc(textRef, {type: tag});
+    }
+    
   };
 
   const onSubmit = async (event) => {
@@ -123,8 +127,7 @@ const Home = ({ userObj }) => {
       photo: isChecked.includes('photo'),
       love: isChecked.includes('love'),
       fashion: isChecked.includes('fashion'),
-      allArr: isChecked,
-      type: tags
+      allArr: isChecked
     });
     const q = query(
       collection(dbService, "accounts"),
