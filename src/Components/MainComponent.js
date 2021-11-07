@@ -4,9 +4,10 @@ import { authService } from "../firebaseSetup";
 import Profile from "./Profile";
 import NavBar from "./navBar";
 import SearchFeed from "./FeedSearch";
+import './MainComponent.scss';
 
-const MainComponent = ({userObj, handleIsLogin}) => {
-  const [state,setState] = useState(0);
+const MainComponent = ({ userObj, handleIsLogin }) => {
+  const [state, setState] = useState(0);
 
   const onLogOutClick = () => {
     authService.signOut();
@@ -25,21 +26,21 @@ const MainComponent = ({userObj, handleIsLogin}) => {
     setState(2);
   }
 
-  return(
+  return (
     <div>
       <p>{userObj.email}</p>
       <p>{userObj.displayName}</p>
       <div>
-        <NavBar handleProfile={handleProfile} handleFeed={handleFeed} handleSearch={handleSearch}/>
-        
-        {state===0? <Profile userObj={userObj}/>:
-        <>
-        {state===1?<Feed userObj={userObj}/>:<SearchFeed userObj={userObj}/>}
-        </>
-        }  
+        <NavBar handleProfile={handleProfile} handleFeed={handleFeed} handleSearch={handleSearch} />
+
+        {state === 0 ? <Profile userObj={userObj} /> :
+          <>
+            {state === 1 ? <Feed userObj={userObj} /> : <SearchFeed userObj={userObj} />}
+          </>
+        }
 
       </div>
-      <button onClick={onLogOutClick}>Log Out</button>
+      <button className="Logout" onClick={onLogOutClick}>Log Out</button>
     </div>
   );
 };

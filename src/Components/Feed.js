@@ -65,13 +65,14 @@ const Feed = ({ userObj }) => {
         <div className="input1">
           <input className="n1" type="text" name="feed" value={feedText} placeholder="Write your text here!" maxLength={120} onChange={onChange} />
         </div>
-        <input className="n2" type="submit" value="Upload" ></input>
-        <input className="n3" type="text" name="tag" value={tag} placeholder="tag" onChange={onChange} />
-        <input className="n4" type="button" value="add" onClick={addTag} />
-        {tags.map((hashtag, index) => (
-          <span key={index}> #{hashtag} </span>
-        ))}
-
+        <div className="textcolor">
+          <input className="n2" type="submit" value="Upload" ></input>
+          <input className="n3" type="text" name="tag" value={tag} placeholder="tag" onChange={onChange} />
+          <input className="n4" type="button" value="add" onClick={addTag} />
+          {tags.map((hashtag, index) => (
+            <span key={index}> #{hashtag} </span>
+          ))}
+        </div>
       </form>
       <div className="feed1">
         {feedArray.map(feed => (
