@@ -72,10 +72,6 @@ function SignUp() {
                             <div className='text'>register</div></button>
                     </div>
                 </form>
-                <hr></hr>
-                <p>
-                    이미 회원임
-                </p>
             </div>
         </div>
     );
