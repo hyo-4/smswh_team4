@@ -8,7 +8,7 @@ import Home from "./Home";
 import './MainComponent.scss';
 
 const MainComponent = ({ userObj, handleIsLogin }) => {
-  const [state, setState] = useState(0);
+  const [state, setState] = useState(3);
 
   const onLogOutClick = () => {
     authService.signOut();
@@ -33,12 +33,10 @@ const MainComponent = ({ userObj, handleIsLogin }) => {
 
   return (
     <div>
-      <p>{userObj.email}</p>
-      <p>{userObj.displayName}</p>
       <div>
         <NavBar handleProfile={handleProfile} handleFeed={handleFeed} handleSearch={handleSearch} handleHome={handleHome}/>
         
-        {state===0? <Profile userObj={userObj}/>:
+        {state===0? <Profile userObj={userObj} handleSearch={handleSearch}/>:
         <>
         {
         state===1?<Feed userObj={userObj}/>:
