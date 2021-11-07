@@ -43,11 +43,12 @@ function SignUp() {
                     travel : false,
                     webtoon : false,
                     game : false,
-                    beuty : false,
+                    beauty : false,
                     health : false,
                     photo : false,
                     love : false,
-                    fashion : false
+                    fashion : false,
+                    allArr : []
                 }
                 await addDoc(collection(dbService,"accounts"),accObj);
             } catch (error) {
