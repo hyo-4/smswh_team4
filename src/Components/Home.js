@@ -251,19 +251,21 @@ const Home = ({ userObj }) => {
             checked={isChecked.includes("fashion")}
             onChange={onChange}
           /> 패션 <br /></div>
+        {tags.map((tag, index) => (
+          <p key={index}><ul className="tag">{tag}</ul></p>
+        )
+        )}
         <input className='s2'
           type="submit" value="전송" />
+
       </form>
       <hr />
       <div className="result">
         {value.map((el, index) => (
-          <p key={index}>{list[index]}:{el}</p>
+          <p key={index}><ul className="list"> {list[index]}:{el}</ul></p>
         )
         )}
-        {tags.map((tag, index) => (
-          <p key={index}>{tag}</p>
-        )
-        )}
+
 
       </div>
     </div>

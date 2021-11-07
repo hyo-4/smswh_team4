@@ -1,8 +1,10 @@
 .s1{
+   
     width: 40px;
     height: 40px;
     margin-left: 5rem;
     border-color: #2f80ed;
+    
 }
 
 .text1{
@@ -20,9 +22,39 @@
     width: 200px;
     border-color: #2f80ed;
     margin-left: 40rem;
+    margin-bottom: 1rem;
     font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 .result{
     font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.list{
+    font-size: 30px;
+    padding: 1rem;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    color: #2f80ed;
+    float: left;
+    background-color:snow;
+    width: 280px;
+}
+
+.tag{
+    border-radius: 20px;
+    border: none;
+    padding-left: 20rem;
+    margin-left: 5rem;
+    width: 200px;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    text-shadow: 3px 3px #246;
+    vertical-align: middle;
+    font-size: 40px;
+    color: snow;
+    padding: 10px;
+    align-items: center;
+    position: absolute;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    background-color: #2f80ed;
 }
