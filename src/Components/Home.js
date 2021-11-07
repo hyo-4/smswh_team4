@@ -28,11 +28,11 @@ const Home = ({ userObj }) => {
         ...doc.data()
       }));
       setRefArr(tempArr);
-      if(tempArr[0]!==undefined){
+      if (tempArr[0] !== undefined) {
         valueCheck(tempArr);
         setTags(tempArr[0].type);
       }
-      
+
     });
     checkTag();
     //console.log(refArr);
@@ -97,11 +97,11 @@ const Home = ({ userObj }) => {
       }
     }
     setTags(tag);
-    if(refArr[0]!==undefined){
+    if (refArr[0] !== undefined) {
       const textRef = doc(dbService, "accounts", `${refArr[0].id}`);
-      await updateDoc(textRef, {type: tag});
+      await updateDoc(textRef, { type: tag });
     }
-    
+
   };
 
   const onSubmit = async (event) => {
