@@ -9,6 +9,7 @@ import './MainComponent.scss';
 
 const MainComponent = ({ userObj, handleIsLogin }) => {
   const [state, setState] = useState(3);
+  const [searchTag, setSearchTag] = useState("");
 
   const onLogOutClick = () => {
     authService.signOut();
@@ -23,10 +24,11 @@ const MainComponent = ({ userObj, handleIsLogin }) => {
     setState(1);
   }
 
-  const handleSearch = () => {
+  const handleSearch = (tag) => {
     setState(2);
+    setSearchTag(tag);
   }
-
+  
   const handleHome = () => {
     setState(3);
   }
@@ -41,7 +43,7 @@ const MainComponent = ({ userObj, handleIsLogin }) => {
         {
         state===1?<Feed userObj={userObj}/>:
         <>
-        {state===2?<SearchFeed userObj={userObj}/>:<Home userObj={userObj}/>}
+        {state===2?<SearchFeed userObj={userObj} defaultTag={searchTag}/>:<Home userObj={userObj}/>}
         </>
         }
         </>
