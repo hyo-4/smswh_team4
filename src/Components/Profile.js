@@ -2,11 +2,36 @@ import { addDoc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import pic1 from './pic1.png'
 import { dbService } from "../firebaseSetup";
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import { where, collection, query, onSnapshot } from "firebase/firestore";
 import './Profile.scss';
 
 
-const Profile = ({ userObj }) => {
+const Profile = ({ userObj, handleSearch }) => {
+    const [tags, setTags] = useState([]);
+
+    useEffect(() => {
+        const q = query(
+            collection(dbService, "accounts"),
+            where("creatorID", "==", userObj.uid)
+        );
+        onSnapshot(q, (snapshot) => {
+                const tempArr = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            console.log(tempArr[0].type);
+            setTags(tempArr[0].type);
+        });
+        console.log(tags);
+        //console.log(refArr);
+        //console.log(refArr[0].allArr);
+    
+        //console.log(value);
+    }, []);
+
+    const onClick = () => {
+        handleSearch();
+    };
 
     return (
         <div>
@@ -18,16 +43,9 @@ const Profile = ({ userObj }) => {
                 <h1>{userObj.displayName}</h1>
                 <h1>{userObj.email}</h1>
             </div>
-            <button className="fb1" type="submit">
-                <div className="ftext"> tag1</div></button>
-            <button className="fb1" type="submit"><div className="ftext"> tag2</div></button>
-            <button className="fb1" type="submit"><div className="ftext"> tag3</div></button>
-            <button className="fb1" type="submit"><div className="ftext"> tag4</div></button>
-            <button className="fb1" type="submit"><div className="ftext"> tag5</div></button>
-            <button className="fb1" type="submit"><div className="ftext"> tag6</div></button>
-
-
-
+            {tags.map((el) => {
+                return <button onClick={onClick} className="fb1" type="submit"><div className="ftext">{el}</div></button>;
+            })}
         </div>
     );
 }
