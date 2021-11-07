@@ -31,6 +31,11 @@ const Profile = ({ userObj, handleSearch }) => {
 
     const onClick = () => {
         handleSearch();
+        const menu = document.getElementsByClassName("menu");
+
+        
+        menu[0].style.color="black";
+        menu[2].style.color="pink";
     };
 
     return (
