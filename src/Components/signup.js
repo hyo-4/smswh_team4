@@ -32,6 +32,7 @@ function SignUp() {
                 await updateProfile(authService.currentUser, profileObj);
                 const accObj = {
                     creatorID: authService.currentUser.uid,
+                    creatorName: authService.currentUser.displayName,
                     baseball : false,
                     football : false,
                     kpop : false,
@@ -48,7 +49,8 @@ function SignUp() {
                     photo : false,
                     love : false,
                     fashion : false,
-                    allArr : []
+                    allArr : [],
+                    type : []
                 }
                 await addDoc(collection(dbService,"accounts"),accObj);
             } catch (error) {
