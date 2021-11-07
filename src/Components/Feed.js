@@ -32,6 +32,7 @@ const Feed = ({ userObj }) => {
       text: feedText,
       createdAt: Date.now(),
       creatorID: userObj.uid,
+      creatorName: userObj.displayName,
       tags: tags
     };
     console.log(feedObj);

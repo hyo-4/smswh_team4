@@ -4,6 +4,7 @@ import { authService } from "../firebaseSetup";
 import Profile from "./Profile";
 import NavBar from "./navBar";
 import SearchFeed from "./FeedSearch";
+import Home from "./Home";
 
 const MainComponent = ({userObj, handleIsLogin}) => {
   const [state,setState] = useState(0);
@@ -25,16 +26,25 @@ const MainComponent = ({userObj, handleIsLogin}) => {
     setState(2);
   }
 
+  const handleHome = () => {
+    setState(3);
+  }
+
   return(
     <div>
       <p>{userObj.email}</p>
       <p>{userObj.displayName}</p>
       <div>
-        <NavBar handleProfile={handleProfile} handleFeed={handleFeed} handleSearch={handleSearch}/>
+        <NavBar handleProfile={handleProfile} handleFeed={handleFeed} handleSearch={handleSearch} handleHome={handleHome}/>
         
         {state===0? <Profile userObj={userObj}/>:
         <>
-        {state===1?<Feed userObj={userObj}/>:<SearchFeed userObj={userObj}/>}
+        {
+        state===1?<Feed userObj={userObj}/>:
+        <>
+        {state===2?<SearchFeed userObj={userObj}/>:<Home userObj={userObj}/>}
+        </>
+        }
         </>
         }  
 
