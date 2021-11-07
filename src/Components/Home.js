@@ -28,7 +28,9 @@ const Home = ({ userObj }) => {
         ...doc.data()
       }));
       setRefArr(tempArr);
-      valueCheck(tempArr);
+      if(tempArr[0]!==undefined){
+        valueCheck(tempArr);
+      }
       setTags(tempArr[0].type);
     });
     checkTag();
