@@ -5,9 +5,10 @@ import Profile from "./Profile";
 import NavBar from "./navBar";
 import SearchFeed from "./FeedSearch";
 import Home from "./Home";
+import './MainComponent.scss';
 
-const MainComponent = ({userObj, handleIsLogin}) => {
-  const [state,setState] = useState(0);
+const MainComponent = ({ userObj, handleIsLogin }) => {
+  const [state, setState] = useState(0);
 
   const onLogOutClick = () => {
     authService.signOut();
@@ -30,7 +31,7 @@ const MainComponent = ({userObj, handleIsLogin}) => {
     setState(3);
   }
 
-  return(
+  return (
     <div>
       <p>{userObj.email}</p>
       <p>{userObj.displayName}</p>
@@ -49,7 +50,7 @@ const MainComponent = ({userObj, handleIsLogin}) => {
         }  
 
       </div>
-      <button onClick={onLogOutClick}>Log Out</button>
+      <button className="Logout" onClick={onLogOutClick}>Log Out</button>
     </div>
   );
 };
