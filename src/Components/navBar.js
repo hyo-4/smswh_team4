@@ -22,7 +22,7 @@ const NavBar = ({ handleProfile, handleFeed, handleSearch, handleHome }) => {
   };
 
   const changeSearch = (event) => {
-    handleSearch();
+    handleSearch("");
     changeColor();
     event.target.style.color = 'pink';
   };
