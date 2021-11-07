@@ -1,10 +1,10 @@
 import React from "react";
 import './navBar.scss';
 
-const NavBar = ({handleProfile, handleFeed, handleSearch, handleHome }) => {
+const NavBar = ({ handleProfile, handleFeed, handleSearch, handleHome }) => {
   const changeColor = () => {
     const all = document.getElementsByClassName('menu');
-    for (let i=0;i<all.length;i++){
+    for (let i = 0; i < all.length; i++) {
       all[i].style.color = 'black';
     }
   };
@@ -32,18 +32,18 @@ const NavBar = ({handleProfile, handleFeed, handleSearch, handleHome }) => {
     changeColor();
     event.target.style.color = 'pink';
   }
-  
-  return(
-      <nav>
-        <h2 className='menu' onClick={changeProfile}>Profile </h2>
-        &nbsp;
-        <h2 className='menu' onClick={changeFeed}>Feed </h2>
-        &nbsp;
-        <h2 className='menu' onClick={changeSearch}>Search </h2>
-        &nbsp;
-        <h2 className='menu' onClick={changeHome}>Home</h2>
-        <hr/>
-      </nav>
+
+  return (
+    <nav>
+      <h2 className='menu' onClick={changeProfile}>Profile </h2>
+      &nbsp;
+      <h2 className='menu' onClick={changeFeed}>Feed </h2>
+      &nbsp;
+      <h2 className='menu' onClick={changeSearch}>Search </h2>
+      &nbsp;
+      <h2 className='menu' onClick={changeHome}>Home</h2>
+      <hr />
+    </nav>
   );
 }
 
