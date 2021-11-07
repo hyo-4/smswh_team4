@@ -6,7 +6,8 @@ const Home = ({userObj}) => {
   const [isChecked, setIsChecked] = useState([]);
   const [refArr, setRefArr] = useState([]);
   const [value, setValue] = useState([0,0,0,0,0,0]);
-  
+  const [tags, setTags] = useState([]);
+
   const art = ['kpop','music','drawing'];
   const sport = ['football', 'baseball','health'];
   const healing = ['travel','webtoon','game','photo'];
@@ -27,7 +28,9 @@ const Home = ({userObj}) => {
       }));
       setRefArr(tempArr);
       valueCheck(tempArr);
+      setTags(tempArr[0].type);
     });
+    checkTag();
     //console.log(refArr);
     //console.log(refArr[0].allArr);
     
@@ -37,6 +40,7 @@ const Home = ({userObj}) => {
   useEffect(()=> {
     if(refArr[0] !== undefined){
       valueCheck(refArr);
+      checkTag();
     } 
     //console.log(value);
   },[refArr]);
@@ -77,12 +81,26 @@ const Home = ({userObj}) => {
       }
     });
     setValue(temp);
-    console.log(value);
-  }
+    //console.log(value);
+    checkTag(); 
+  };
+  
+  const checkTag = () => {
+    const tag = [];
+    for(let i=0;i<6;i++){
+      if(value[i]>=2){
+        tag.push(list[i]);
+      }
+    }
+    //const textRef = doc(dbService, "accounts", `${refArr[0].id}`);
+    //await updateDoc(textRef, {type: tags});
+    setTags(tag);
+  };
+
   const onSubmit = async (event) => {
     event.preventDefault();
     //console.log(isChecked);
-    
+    checkTag();
     //console.log(refArr[0].id);
     const textRef = doc(dbService, "accounts", `${refArr[0].id}`);
     await updateDoc(textRef, {
@@ -102,7 +120,8 @@ const Home = ({userObj}) => {
       photo: isChecked.includes('photo'),
       love: isChecked.includes('love'),
       fashion: isChecked.includes('fashion'),
-      allArr: isChecked        
+      allArr: isChecked,
+      type: tags
     });
     const q = query(
       collection(dbService,"accounts"),
@@ -234,6 +253,10 @@ const Home = ({userObj}) => {
       </form>
       {value.map( (el, index) =>(
         <p key={index}>{list[index]}:{el}</p>
+      )
+      )}
+      {tags.map( (tag, index) =>(
+        <p key={index}>{tag}</p>
       )
       )}
     </div>

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { dbService } from "../firebaseSetup";
-import { where, collection, query, onSnapshot } from "firebase/firestore";
+import { where, collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import Some from "./Some";
 import './FeedSearch.scss';
 
