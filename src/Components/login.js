@@ -41,7 +41,7 @@ const Login = () => {
                 </div>
 
                 <form className="sign-form" onSubmit={handleOnSubmit}>
-                    
+
                     <div>
 
                         <input className='n1'
@@ -74,8 +74,8 @@ const Login = () => {
             </div>
             <div className="imgContainer">
                 <img src={mysome1}></img>
-            </div> 
-            <hr/>
+            </div>
+            <hr />
         </div>
 
     );
